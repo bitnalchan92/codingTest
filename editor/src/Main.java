@@ -1,19 +1,5 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        Map<Integer, Integer> map = new HashMap<>();
 
-        for (int i = 0; i < 10; i++) {
-            int rest = sc.nextInt() % 42;
-            map.put(rest, map.getOrDefault(rest, 0));
-        }
-
-        int size = map.keySet().size();
-
-        System.out.println(size);
     }
 }
