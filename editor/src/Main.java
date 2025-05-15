@@ -1,33 +1,27 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        int[] correctPiece = {1, 1, 2, 2, 2, 8};
-//        HashMap<Integer, Integer> pieceSet = new HashMap<>();
-//        pieceSet.put(0, 1);
-//        pieceSet.put(1, 1);
-//        pieceSet.put(2, 2);
-//        pieceSet.put(3, 2);
-//        pieceSet.put(4, 2);
-//        pieceSet.put(5, 8);
-        int[] hasPiece = Arrays.stream(br.readLine().split(" "))
-                .mapToInt(Integer::parseInt)
-                .toArray();
+        String input = br.readLine();
+        String[] croAlpha = {"c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z="};
 
-        int[] result = new int[6];
-        for (int i = 0; i < result.length; i++) {
-            int diff = correctPiece[i] - hasPiece[i];
-//            int diff = pieceSet.get(i) - hasPiece[i];
-            sb.append(diff + " ");
+        for (String ele : croAlpha) {
+            if (input.contains(ele)) {
+                input = input.replaceAll(ele, "!");
+            }
         }
 
-        System.out.println(sb);
-        br.close();
+        System.out.println(input.length());
     }
 }
+
+/**
+ * 메모 :
+ * 1. input = input.replaceAll(ele, ""); // 공백으로 바꿔버리면 문제가 발생...
+ * 테스트 케이스 nljj에서 사이의 lj를 공백으로 바꾸면 "nj"가 되고 이것도 크로아티아 알파벳에 속하므로 정답인 3개가 아니라 2개라고 출력된다.
+ * <p>
+ * 2. c=c=의 경우 내가 c= 이거 한종류로 이루어져서 답이 1이 나와야하는거 아닌가 싶었는데, 개수를 새는 것이기 때문에 2가 정답
+ */
