@@ -1,39 +1,26 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        HashMap<String, Double> gradePoint = new HashMap<>();
-        gradePoint.put("A+", 4.5);
-        gradePoint.put("A0", 4.0);
-        gradePoint.put("B+", 3.5);
-        gradePoint.put("B0", 3.0);
-        gradePoint.put("C+", 2.5);
-        gradePoint.put("C0", 2.0);
-        gradePoint.put("D+", 1.5);
-        gradePoint.put("D0", 1.0);
-        gradePoint.put("F", 0.0);
+        StringTokenizer st = null;
+        String[][] arr = new String[5][15]; // 다섯줄이고 한줄에 1~15개의 알파벳과 0~9가 올 수 있다.
 
-        double totalGradeAndCourseAveragePoint = 0.0;
-        double totalGradeScore = 0.0; // 학점의 총합
-        for (int i = 0; i < 20; i++) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            String courseName = st.nextToken(); // 과목명
-            double grade = Double.parseDouble(st.nextToken()); // 학점
-            String tier = st.nextToken(); // 등급
-            Double courseAveragePoint = gradePoint.get(tier); // 등급으로 구한 과목평점
-
-            if (tier.equals("P")) continue;
-
-            totalGradeAndCourseAveragePoint += grade * courseAveragePoint;
-            totalGradeScore += grade;
+        // 배열에 값 입력
+        for (int i = 0; i < arr.length; i++) {
+            String line = br.readLine();
+            for (int j = 0; j < line.length(); j++) {
+                char c = line.charAt(j);
+                arr[i][j] = String.valueOf(c);
+            }
         }
 
-        br.close();
-        System.out.println(totalGradeAndCourseAveragePoint / totalGradeScore);
+        // 출력 ( 세로 출력이니까 j(열) 대신 i(행)번호가 늘어나면서 출력을 한번하고 다음열(j+1)되어 다음 반복 수행하도록
+        for (int j = 0; j < 15; j++) {
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i][j] != null) System.out.print(arr[i][j]);
+            }
+        }
     }
 }
