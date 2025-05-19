@@ -144,3 +144,12 @@
 </details>
 
 ## 강의
+
+<details>
+  <summary>section1. string(문자열)</summary>
+
+- [1-01](강의/1-01.md)
+- [1-02](강의/1-02.md)
+- [1-03](강의/1-03.md)
+</details>
+
