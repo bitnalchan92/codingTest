@@ -4,26 +4,19 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int area = 0;
-        boolean[][] space = new boolean[100][100];
-        int paperCnt = Integer.parseInt(br.readLine());
+        int result = 0;
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        String n = st.nextToken();
+        int b = Integer.parseInt(st.nextToken());
 
-        for (int i = 0; i < paperCnt; i++) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            int x = Integer.parseInt(st.nextToken());
-            int y = Integer.parseInt(st.nextToken());
-
-            for (int j = x; j < x + 10; j++) {
-                for (int k = y; k < y + 10; k++) {
-                    if ( !space[j][k] ) {
-                        space[j][k] = true;
-                        area++;
-                    }
-                }
-            }
+        for (int i = n.length() - 1; i >= 0; i--) {
+            char c = n.charAt(i);
+            int x = 0;
+            if (Character.isDigit(c)) x = c - '0';
+            else x = c - 'A' + 10;
+            result += x * (int) Math.pow(b, n.length() - i - 1);
         }
-
+        System.out.println(result);
         br.close();
-        System.out.println(area);
     }
 }
