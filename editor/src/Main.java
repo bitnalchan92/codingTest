@@ -3,16 +3,20 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
+    public String solution(String word) {
+        String result = "NO";
+        String temp = new StringBuilder(word).reverse().toString();
+
+        if (word.equalsIgnoreCase(temp)) return "YES";
+
+        return result;
+    }
+
     public static void main(String[] args) throws IOException {
+        Main M = new Main();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int stage = Integer.parseInt(br.readLine());
-        int stageRowLength = 2; // 2 * 2 = 4개의 점으로 초기화
-        br.close();
+        String word = br.readLine();
 
-        for (int i = 0; i < stage; i++) {
-            stageRowLength += (int) Math.pow(2, i);
-        }
-
-        System.out.println((int) Math.pow(stageRowLength, 2));
+        System.out.println(M.solution(word));
     }
 }
