@@ -1,39 +1,18 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-    public ArrayList<String> solution(int n, String[] str) {
-        ArrayList<String> answer = new ArrayList<>();
-        for (String x : str) {
-            char[] charArr = x.toCharArray();
-            int lt = 0, rt = charArr.length - 1;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int stage = Integer.parseInt(br.readLine());
+        int stageRowLength = 2; // 2 * 2 = 4개의 점으로 초기화
+        br.close();
 
-            while ( lt < rt ) {
-                char temp = charArr[lt];
-                charArr[lt] = charArr[rt];
-                charArr[rt] = temp;
-
-                lt++;
-                rt--;
-            }
-
-            String temp = String.valueOf(charArr);
-            answer.add(temp);
+        for (int i = 0; i < stage; i++) {
+            stageRowLength += (int) Math.pow(2, i);
         }
 
-        return answer;
-    }
-
-    public static void main(String[] args) {
-        Main T = new Main();
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        String[] str = new String[n];
-        for (int i = 0; i < n; i++) {
-            str[i] = sc.next();
-        }
-        for (String s : T.solution(n, str)) {
-            System.out.println(s);
-        }
+        System.out.println((int) Math.pow(stageRowLength, 2));
     }
 }
