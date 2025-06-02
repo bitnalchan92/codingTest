@@ -1,42 +1,21 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        int charCnt = Integer.parseInt(br.readLine());
+        String encodedWord = br.readLine();
         br.close();
-        String s = st.nextToken();
-        char t = st.nextToken().charAt(0);
+        StringBuilder sb = new StringBuilder();
 
-        int[] answer = new int[s.length()];
-        int p = 1000;
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == t) {
-                p = 0;
-                answer[i] = p;
-            } else {
-                p++;
-                answer[i] = p;
-            }
+        for (int i = 0; i < charCnt; i++) {
+            String tmp = encodedWord.substring(0, 7).replace('#', '1').replace('*', '0');
+            int num = Integer.parseInt(tmp, 2); // 두 번째 인자인 radix는 "이 문자열이 몇 진수인지를 알려주는 값"이야.
+            sb.append((char) num);
+
+            encodedWord = encodedWord.substring(7);
         }
 
-        p = 1000;
-        for (int i = s.length() - 1; i >= 0; i--) {
-            if (s.charAt(i) == t) p = 0;
-            else {
-                p++;
-                answer[i] = Math.min(answer[i], p); // 중요! 먼저 ++하며 돌았던 반복문에서 미리 셋팅되어있던 값과 현재의 값을 비교하여 min값을 새로 넣어줘야한다. 가까운 거리를 찾고 있기 때문에!
-            }
-        }
-
-        for (int i : answer) {
-            System.out.print(i + " ");
-        }
-
-        // teachermode e
-        // avdkevapeivjdk v
+        System.out.println(sb);
     }
 }
