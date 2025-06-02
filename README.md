@@ -179,3 +179,9 @@
 - [1-12](강의/1-12.md)
 </details>
 
+<details>
+  <summary>section2. Array(1, 2차원 배열)</summary>
+
+- [2-01](강의/2-01.md)
+</details>
+
