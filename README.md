@@ -183,5 +183,6 @@
   <summary>section2. Array(1, 2차원 배열)</summary>
 
 - [2-01](강의/2-01.md)
+- [2-02](강의/2-02.md)
 </details>
 
