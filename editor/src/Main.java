@@ -1,35 +1,37 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.*;
+import java.io.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
-        br.close();
+    public int[] getScoreOrderArray(int n, int[] arr) {
+        int[] answer = new int[n];
 
-        // prime number = 소수
-        boolean[] isPrime = new boolean[n + 1]; // 자연수의 범위를 표현하기 위해 n+1의 길이만큼을 잡는다.
-        Arrays.fill(isPrime, true);
+        for (int i = 0; i < n; i++) {
+            int cnt = 1;
 
-        isPrime[0] = false;
-        isPrime[1] = false;
-        // √n까지만 확인 ( 합성수의 경우 1과 자기자신을 제외하고 약수의 곱으로 나타낸 경우 그 중 하나는 무조건 √n 이하이다. ( gpt 설명 참고 자세하게 잘해준다. )
-        for (int i = 2; i * i <= n; i++) {
-            if (isPrime[i]) {
-                // i를 제외하고 그의 배수들은 소수가 아니기 때문에 반복을 돌면서 false처리를 해줘야 한다.
-                for (int j = i * i; j <= n; j += i) {
-                    isPrime[j] = false;
-                }
+            for (int j = 0; j < n; j++) {
+                if (arr[j] > arr[i]) cnt++;
             }
+
+            answer[i] = cnt;
         }
 
-        // 결과 출력
-        int result = 0;
-        for (int i = 2; i <= n; i++) {
-            if (isPrime[i]) result++;
+        return answer;
+    }
+
+    public static void main(String[] args) throws IOException {
+        Main M = new Main();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int scoreCnt = Integer.parseInt(br.readLine());
+        int[] scoreArr = new int[scoreCnt];
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        br.close();
+        for (int i = 0; i < scoreCnt; i++) {
+            scoreArr[i] = Integer.parseInt(st.nextToken());
         }
-        System.out.println(result);
+
+        for (int order : M.getScoreOrderArray(scoreCnt, scoreArr)) {
+            System.out.print(order + " ");
+        }
     }
 }
