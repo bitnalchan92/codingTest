@@ -1,0 +1,1 @@
+print(list(input()).pop(int(input()) - 1))
